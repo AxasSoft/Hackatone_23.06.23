@@ -106,8 +106,9 @@
 		6F04960A2A45EA8F00019308 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				6F04960B2A45EAA700019308 /* Map.storyboard */,
-				6F04960D2A45EAB300019308 /* MapController.swift */,
+				741149A32A45EFF00046E521 /* Model */,
+				741149A22A45EFEE0046E521 /* View */,
+				741149A12A45EFE90046E521 /* Controller */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -184,7 +185,6 @@
 		6F92D3742A45D5A000713AC6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				6F92D3812A45DBFD00713AC6 /* New Group */,
 				6F92D37C2A45D84800713AC6 /* Model */,
 				6F92D37D2A45D84C00713AC6 /* View */,
 				6F92D37B2A45D83F00713AC6 /* Controller */,
@@ -233,11 +233,27 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
-		6F92D3812A45DBFD00713AC6 /* New Group */ = {
+		741149A12A45EFE90046E521 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6F04960D2A45EAB300019308 /* MapController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		741149A22A45EFEE0046E521 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6F04960B2A45EAA700019308 /* Map.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		741149A32A45EFF00046E521 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "New Group";
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
