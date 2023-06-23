@@ -34,6 +34,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="0N6-6x-gHa"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="dQ9-Na-XDz" id="IxB-oh-2NX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

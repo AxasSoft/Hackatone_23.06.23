@@ -19,12 +19,18 @@ final class MapController: UIViewController {
         setupUI()
     }
 
+    //MARK: setupUI
     private func setupUI() {
         makeShadowBehindMap()
-        setupLocation()
+        mapView.delegate = self
+
+        setLocation(latitude: 44.5414503, longitude: 38.075067, zoom: 2500) //mark on tolstiy mis
+        setLocation(latitude: 44.635395, longitude: 38.000555, zoom: 3500)  //mark on vinogradniy
+
     }
 
-    private func setupLocation() {
+    //MARK: showLocation
+    private func setLocation(latitude: CGFloat, longitude: CGFloat, zoom: Double) {
         DispatchQueue.global().async { [self] in
             if CLLocationManager.locationServicesEnabled() {
                 location.requestWhenInUseAuthorization()
@@ -34,47 +40,62 @@ final class MapController: UIViewController {
                 location.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             }
 
-            if let userLocation = location.location?.coordinate {
-                //FIXME: set user location, not hardcode
-                let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.012657, longitude: 39.048542), latitudinalMeters: 1000, longitudinalMeters: 1000)
-                //let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
-                mapView.setRegion(viewRegion, animated: false)
-                mapView.showsUserLocation = true
-                mapView.delegate = self
+            let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), latitudinalMeters: zoom, longitudinalMeters: zoom)
 
-                mapView.pointOfInterestFilter = .init(including: [.gasStation])
+            mapView.setRegion(viewRegion, animated: false)
+            mapView.showsUserLocation = true
+            mapView.mapType = .satellite
+            mapView.pointOfInterestFilter = .init(including: [.gasStation])
 
-                let searchRequest = MKLocalSearch.Request()
-                searchRequest.naturalLanguageQuery = "Gas Station"
-                searchRequest.region = mapView.region
-                searchRequest.resultTypes = [.pointOfInterest, .address]
-
-                let search = MKLocalSearch(request: searchRequest)
-                search.start { [self] response, error in
-                    guard let response = response else {
-                        print("Error: \(error?.localizedDescription ?? "No error specified").")
-                        return
-                    }
-                    // Create annotation for every map item
-                    for mapItem in response.mapItems {
-
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = mapItem.placemark.coordinate
-
-                        annotation.title = mapItem.name
-                        annotation.subtitle = mapItem.phoneNumber
-
-                        dump(mapItem.url)
-
-                        mapView.addAnnotation(annotation)
-                    }
-                    mapView.setRegion(response.boundingRegion, animated: true)
-                }
-            }
+            //showUserLocation()
 
             DispatchQueue.main.async { [self] in
                 location.startUpdatingLocation()
             }
+        }
+    }
+
+    //MARK: show user location
+    private func showUserLocation() {
+        if let userLocation = location.location?.coordinate {
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(viewRegion, animated: false)
+            mapView.showsUserLocation = true
+            mapView.mapType = .satellite
+
+            DispatchQueue.main.async { [self] in
+                location.startUpdatingLocation()
+            }
+        }
+    }
+
+    //MARK: make a search request
+    private func makeSearchRequest(message: String) {
+
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = message
+        searchRequest.region = mapView.region
+        searchRequest.resultTypes = [.pointOfInterest, .address]
+
+        let search = MKLocalSearch(request: searchRequest)
+
+        search.start { [self] response, error in
+            guard let response = response else {
+                print("Error: \(error?.localizedDescription ?? "No error specified").")
+                return
+            }
+            // Create annotation for every map item
+            for mapItem in response.mapItems {
+
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = mapItem.placemark.coordinate
+
+                annotation.title = mapItem.name
+                annotation.subtitle = mapItem.phoneNumber
+
+                mapView.addAnnotation(annotation)
+            }
+            mapView.setRegion(response.boundingRegion, animated: true)
         }
     }
 
@@ -118,7 +139,7 @@ extension MapController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
 
-        annotationView?.image = UIImage(named: "logo")
+        //annotationView?.image = UIImage(named: "logo")
 
         return annotationView
     }
