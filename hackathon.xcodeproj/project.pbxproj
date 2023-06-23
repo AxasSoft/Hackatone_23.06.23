@@ -110,8 +110,9 @@
 		6F04960A2A45EA8F00019308 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				6F04960B2A45EAA700019308 /* Map.storyboard */,
-				6F04960D2A45EAB300019308 /* MapController.swift */,
+				74A9893C2A46075D00FA729E /* Model */,
+				74A9893B2A46075B00FA729E /* View */,
+				74A9893A2A46074E00FA729E /* Controller */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -244,6 +245,29 @@
 				6F92D37F2A45D95F00713AC6 /* Tabbar.storyboard */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		74A9893A2A46074E00FA729E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6F04960D2A45EAB300019308 /* MapController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		74A9893B2A46075B00FA729E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6F04960B2A45EAA700019308 /* Map.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74A9893C2A46075D00FA729E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
