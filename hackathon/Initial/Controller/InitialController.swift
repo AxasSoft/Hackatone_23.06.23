@@ -13,7 +13,7 @@ final class InitialController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.0) {
             self.logoImage.alpha = 1
         } completion: { _ in
             self.performSegue(withIdentifier: "AuthController", sender: self)
