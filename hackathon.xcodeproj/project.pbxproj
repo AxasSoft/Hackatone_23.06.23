@@ -506,6 +506,9 @@
 				DEVELOPMENT_TEAM = 5JKHA34QG7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackathon/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need to access your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need to access your location";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need to access your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Initial;
@@ -537,6 +540,9 @@
 				DEVELOPMENT_TEAM = 5JKHA34QG7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackathon/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need to access your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need to access your location";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need to access your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Initial;
