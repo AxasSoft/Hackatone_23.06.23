@@ -25,7 +25,7 @@ final class MapController: UIViewController {
         mapView.delegate = self
 
         setLocation(latitude: 44.5414503, longitude: 38.075067, zoom: 2500) //mark on tolstiy mis
-        setLocation(latitude: 44.635395, longitude: 38.000555, zoom: 3500)  //mark on vinogradniy
+        //setLocation(latitude: 44.635395, longitude: 38.000555, zoom: 3500)  //mark on vinogradniy
 
     }
 
@@ -44,7 +44,7 @@ final class MapController: UIViewController {
 
             mapView.setRegion(viewRegion, animated: false)
             mapView.showsUserLocation = true
-            mapView.mapType = .satellite
+            //mapView.mapType = .satellite
             mapView.pointOfInterestFilter = .init(including: [.gasStation])
 
             //showUserLocation()
@@ -142,5 +142,30 @@ extension MapController: MKMapViewDelegate {
         //annotationView?.image = UIImage(named: "logo")
 
         return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKCircle {
+            let renderer = MKCircleRenderer(overlay: overlay)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 2
+            return renderer
+
+        } else if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.orange
+            renderer.lineWidth = 3
+            return renderer
+
+        } else if overlay is MKPolygon {
+            let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.orange
+            renderer.lineWidth = 2
+            return renderer
+        }
+
+        return MKOverlayRenderer()
     }
 }
