@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQ9-Na-XDz" customClass="MKMapView">
-                                <rect key="frame" x="30" y="103" width="333" height="325"/>
+                                <rect key="frame" x="30" y="103" width="333" height="375"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="325" id="WJA-My-OnF"/>
+                                    <constraint firstAttribute="height" constant="375" id="WJA-My-OnF"/>
                                 </constraints>
                             </view>
                         </subviews>
